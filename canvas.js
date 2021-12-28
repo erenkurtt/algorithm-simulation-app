@@ -4,17 +4,13 @@ function startApp() {
 
     canvasArea.start();
 
-  
-
-
-
     for (let i = 0; i < inputArr.length; i++) {
         let newObj = new componenttext(inputArr[i], 10 * 5 * i, 50);
         valArr.push(newObj);
     }
 
-    val1 = new  componenttext( 1, 600, 50)
-    
+    val1 = new componenttext(1, 600, 50)
+
 }
 
 
@@ -30,7 +26,7 @@ var canvasArea = {
         this.canvas.position = "absolute";
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateCanvasArea, 2000);
+        this.interval = setInterval(updateCanvasArea, 1000);
 
         window.addEventListener('touchstart', function (e) {
             var touchobj = e.changedTouches[0];
@@ -86,59 +82,94 @@ function componenttext(text, x, y) {
     this.x = x;
     this.y = y;
 
-    this.update = function () {
+    this.update = function (color) {
         ctx = canvasArea.context;
         ctx.font = "31px Showcard Gothic ";
-        ctx.fillStyle = "black";
+        ctx.fillStyle = color;
         ctx.fillText(this.text, this.x, this.y);
     }
 }
 
-var index = 0 , i = 0, j = 0;  
+var index = 0, i = 0, j = 0, timer = -1;
 
 function updateCanvasArea() {
 
 
     canvasArea.clear();
-    
-    val1.update()
 
-    valArr.forEach(element => {
-        element.update();
-    });
+    val1.update("black")
 
-    if(index < 1){
+    if (timer === -1) {
+
+        valArr.forEach(element => {
+
+            element.update("black");
+
+
+        });
+    }
+
+    if (index < 1) {
         insertionSort(inputArr);
     }
-   
+
     index++;
 
-    j=0;
+    j = 0;
 
-    if( i < allArr.length ) {
-       
+    if (i < allArr.length && timer >= 0) {
 
-            while( j < valArr.length ){
-     
-                valArr[j].text = allArr[i][j];
-             
-                j++
-            }
 
+        while (j < valArr.length) {
+
+            valArr[j].text = allArr[i][j];
+
+            j++
+        }
+
+        if (i < allArr.length - 1 && timer % 2 === 0) {
+            returnChanges(comparasion[i]);
+        }
+        else if (timer % 2 === 1 && (i < comparasion.length)) {
+            waitChanges(comparasion[i - 1], comparasion[i])
+        }
+        else {
+
+            valArr.forEach(element => {
+                element.y = 50
+                element.update("blue");
+
+
+            });
+
+        }
+
+        val1.text = i;
+
+    } else if (i === allArr.length) {
+
+        valArr.forEach(element => {
+
+            element.update("blue");
+
+
+        });
+        canvasArea.stop()
     }
 
-    i++
-    
+    if (timer % 2 === 0) {
+        i++;
+    }
 
-    val1.text += 1 ;
-
-
+    timer++;
 
 }
 
 
 
+
 var allArr = new Array();
+var comparasion = new Array();
 
 function insertionSort(inputArr) {
 
@@ -151,26 +182,70 @@ function insertionSort(inputArr) {
         let j = i - 1;
 
         while ((j >= 0) && (temp < inputArr[j])) {
-         
 
-            let tempArr =[...inputArr];
+            comparasion.push({ currentIndex: j + 1, comparasedIndex: j })
+            let tempArr = [...inputArr];
 
             allArr.push(tempArr);
 
             inputArr[j + 1] = inputArr[j];
             inputArr[j] = temp;
             j--;
-            
-          
+
         }
-       
+
         //   inputArr[j+1] = temp;
     }
-    let tempArr =[...inputArr];
+    let tempArr = [...inputArr];
     allArr.push(tempArr);
 
-   
+    console.log(comparasion)
+
+}
 
 
-    
+function returnChanges(obj) {
+
+    valArr.forEach(element => {
+        element.y = 50
+        if (valArr.indexOf(element) === obj.currentIndex) {
+            element.y += 50
+            element.update("green");
+
+        } else if (valArr.indexOf(element) === obj.comparasedIndex) {
+            element.update("red")
+
+        } else {
+
+            element.update("black");
+        }
+
+
+    });
+
+}
+
+function waitChanges(obj, nextObj) {
+
+    valArr.forEach(element => {
+        element.y = 50
+        if (valArr.indexOf(element) === obj.comparasedIndex) {
+
+            if (obj.currentIndex > nextObj.currentIndex) {
+                element.y += 50
+                console.log(obj)
+            }
+            element.update("green");
+
+
+        } else if (valArr.indexOf(element) === obj.currentIndex) {
+            element.update("red")
+
+        } else {
+
+            element.update("black");
+        }
+
+    });
+
 }
