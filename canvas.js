@@ -2,7 +2,7 @@ let valArr = [];
 
 function startApp() {
 
-    canvasArea.start();
+    canvasArea.start(updateCanvasArea);
 
     for (let i = 0; i < inputArr.length; i++) {
         let newObj = new componenttext(inputArr[i], 10 * 5 * i, 50);
@@ -20,13 +20,13 @@ let inputArr = [92, 42, 61, 32, 69];
 
 var canvasArea = {
     canvas: document.createElement("canvas"),
-    start: function () {
+    start: function ( algoFunction ) {
         this.canvas.width = 700;
         this.canvas.height = 400;
         this.canvas.position = "absolute";
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateCanvasArea, 1000);
+        this.interval = setInterval(algoFunction, 1000);
 
         window.addEventListener('touchstart', function (e) {
             var touchobj = e.changedTouches[0];
