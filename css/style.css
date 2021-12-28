@@ -1,0 +1,19 @@
+
+canvas{
+    margin-top: 0px;
+    border: 1px solid black;
+    position:absolute;
+    left: 425px;
+    top: 200px;;
+}
+
+nav{
+  background-color:#353745;
+}
+
+.sidebar{
+  background-color: #F0F0F1;
+  min-height: 697px;
+  max-height: 697px;
+  overflow-y: auto;
+}
