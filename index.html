@@ -56,17 +56,17 @@
     <div class="container-fluid">
       <div class="row">
         <div class="sidebar col-2">
-          <div class="accordion border-0">
+          <!-- <div class="accordion border-0">
             <div class="accordion-item border-0" style="background-color: #F0F0F1;">
               <h2 class="accordion-header" id="headingOne">
-                <button style="background-color: #F0F0F1;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <button style="background-color: #F0F0F1; outline:none;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   Sorting Algorithms
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="list-group accordion-body pt-0 ps-2">
-                  <button style="background-color: #F0F0F1;" type="button" class="border-0 list-group-item list-group-item-action">Insertion Sort</button>
-                  <button style="background-color: #F0F0F1;" type="button" class="border-0 list-group-item list-group-item-action">Merge Sort</button>
+                  <button onclick="startApp()" style="background-color: #F0F0F1;" type="button" class="border-0 list-group-item list-group-item-action">Insertion Sort</button>
+                  <button onclick="startMerge()" style="background-color: #F0F0F1;" type="button" class="border-0 list-group-item list-group-item-action">Merge Sort</button>
                   <button style="background-color: #F0F0F1;" type="button" class="border-0 list-group-item list-group-item-action">Quick Sort</button>
                 </div>
               </div>
@@ -84,7 +84,39 @@
                 </div>
               </div>
             </div>
+          </div> -->
+
+          <h2 class="m-0">
+            <button class="sidebar-button btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse1" aria-expanded="false">
+              Sorting Algorithms
+            </button>
+          </h2>
+          <div class="collapse p-0 m-0" id="sidebarCollapse1">
+            <div class="card card-body sidebar-collapse p-0 m-0 border-0">
+              <div class="list-group p-0 m-0">
+                <button onclick="startApp()" style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Insertion Sort</button>
+                <button onclick="startMerge()" style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Merge Sort</button>
+                <button style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Quick Sort</button>
+              </div>
+            </div>
           </div>
+
+          <h2 class="m-0">
+            <button class="sidebar-button btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse2" aria-expanded="false">
+              Searching Algorithms
+            </button>
+          </h2>
+          <div class="collapse p-0 m-0" id="sidebarCollapse2">
+            <div class="card card-body sidebar-collapse p-0 m-0 border-0">
+              <div class="list-group p-0 m-0">
+                <button style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Linear Search</button>
+                <button style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Binary Search</button>
+              </div>
+            </div>
+          </div>
+
+
+
         </div>
         <div class="col-8" style="background-color: white;">
             <button onclick="startApp()" >INSERTION SORT</button>
