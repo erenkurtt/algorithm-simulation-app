@@ -3,6 +3,7 @@ let linear_vals = [];
 
 
 function startLinearSearch() {
+    canvasArea.stop();
 
     canvasArea.start(updateCanvasLinearSearch);
 

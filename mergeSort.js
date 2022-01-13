@@ -10,6 +10,7 @@ let list_of_square = [];
 let list_of_seperated = []; 
 
 function startMerge() {
+    canvasArea.stop();
 
     canvasArea.start(updateCanvasMerge);
 

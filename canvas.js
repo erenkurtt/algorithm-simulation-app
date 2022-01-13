@@ -2,6 +2,8 @@ let valArr = [];
 
 function startApp() {
 
+    canvasArea.stop();
+
     canvasArea.start(updateCanvasArea);
 
     for (let i = 0; i < inputArr.length; i++) {
