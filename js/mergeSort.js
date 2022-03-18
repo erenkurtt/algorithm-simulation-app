@@ -9,10 +9,10 @@ let squareArrs = [];
 let list_of_square = []; 
 let list_of_seperated = []; 
 
-function startMerge() {
+function startMergeSort() {
     canvasArea.stop();
 
-    canvasArea.start(updateCanvasMerge);
+    canvasArea.start(updateCanvasMergeSort);
 
     for (let i = 0; i < inputArr22.length; i++) {
         let squares = new compSquare(10 * 5 * i, 10, 50, 50);
@@ -57,7 +57,7 @@ function compSquare(x, y, width, height) {
 let mergeTimer = 0 , sortCount = 0;
 
 
-function updateCanvasMerge() {
+function updateCanvasMergeSort() {
 
     canvasArea.clear();
 
