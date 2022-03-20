@@ -3,6 +3,7 @@ let linear_vals = [];
 
 
 function startLinearSearch() {
+    canvasArea.stop();
 
     canvasArea.start(updateCanvasLinearSearch);
 
@@ -13,7 +14,7 @@ function startLinearSearch() {
         //    linear_squares.push(squares);
     }
 
-     searchKey  =  new componenttext(  searchLinear , 10 * 5 * i + 10 * i, 100);
+    searchKey  =  new componenttext(  searchLinear , 10 * 5 * i + 10 * i, 100);
 
 
 }
