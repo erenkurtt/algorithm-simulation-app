@@ -5,7 +5,6 @@ let leftArr = [];
 let equalArr = [];
 let rightArr = [];
 
-
 function startQuickSort() {
 
     canvasArea.stop();
@@ -21,15 +20,16 @@ function startQuickSort() {
     deneme  =  new componenttext(  i , 10 * 5 * i, 150);
 }
 
-
 let quickCounter = 0;
 
-
+let red_num;
 
 function updateCanvasQuickSort() {
     let sortedArr = [];
 
     canvasArea.clear();
+
+    //canvasArea.context.clearRect(0, 50, canvasArea.canvas.width, canvasArea.canvas.height)
 
     deneme.text = pivot;
     deneme.x  =  10 * 5 * quickCounter ;
@@ -40,16 +40,6 @@ function updateCanvasQuickSort() {
         element.update("black");
     });
 
-    
-
-    if(quickSortArr[quickCounter] < pivot)
-        leftArr.push(quickSortArr[quickCounter]);
-    
-    else if(quickSortArr[quickCounter] > pivot)
-        rightArr.push(quickSortArr[quickCounter]);
-    
-    else if(quickSortArr[quickCounter] == pivot && quickCounter != pivot_i)
-        equalArr.push(quickSortArr[quickCounter]);
 
     newArr=[
         ...leftArr,
@@ -63,15 +53,35 @@ function updateCanvasQuickSort() {
         sortedArr.push(newObj);
     }
 
-    sortedArr.forEach(element => {
-        if(element.text==pivot)
-            element.update("blue");
+
+    for(let i=0; i<sortedArr.length; i++){
+
+        if(i == red_num)
+            sortedArr[i].update("red");
+
+        else if(sortedArr[i].text==pivot)
+            sortedArr[i].update("blue");
+
         else
-            element.update("black");
-    });
+            sortedArr[i].update("black");
+    }
 
+    if(quickSortArr[quickCounter] < pivot){
+        leftArr.push(quickSortArr[quickCounter]);
+        red_num = leftArr.length - 1;
+    }
+    
+    else if(quickSortArr[quickCounter] > pivot){
+        rightArr.push(quickSortArr[quickCounter]);
+        red_num = leftArr.length + equalArr.length + rightArr.length;
+    }
+    
+    else if(quickSortArr[quickCounter] == pivot && quickCounter != pivot_i){
+        equalArr.push(quickSortArr[quickCounter]);
+        red_num = leftArr.length + equalArr.length;
+    }
 
-    if(quickCounter == quickSortArr.length - 1)
+    if(quickCounter == quickSortArr.length)
         canvasArea.stop();
 
     quickCounter++;
