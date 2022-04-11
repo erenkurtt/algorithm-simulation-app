@@ -32,7 +32,7 @@ function updateCanvasQuickSort() {
     //canvasArea.context.clearRect(0, 50, canvasArea.canvas.width, canvasArea.canvas.height)
 
     deneme.text = pivot;
-    deneme.x  =  10 * 5 * quickCounter ;
+    deneme.x  =  10 * 5 * quickCounter;
 
     deneme.update("blue");
 
@@ -40,19 +40,17 @@ function updateCanvasQuickSort() {
         element.update("black");
     });
 
-
     newArr=[
         ...leftArr,
         ...[pivot],
         ...equalArr,
         ...rightArr
-      ]
+    ];
 
     for (let i = 0; i < newArr.length; i++) {
-        let newObj = new componenttext(newArr[i], 10 * 5 * i, 100);
+        let newObj = new componenttext(newArr[i], 10 * 5 * i, quickYpositon);
         sortedArr.push(newObj);
     }
-
 
     for(let i=0; i<sortedArr.length; i++){
 
@@ -70,25 +68,29 @@ function updateCanvasQuickSort() {
         leftArr.push(quickSortArr[quickCounter]);
         red_num = leftArr.length - 1;
     }
-    
+
     else if(quickSortArr[quickCounter] > pivot){
         rightArr.push(quickSortArr[quickCounter]);
         red_num = leftArr.length + equalArr.length + rightArr.length;
     }
-    
+
     else if(quickSortArr[quickCounter] == pivot && quickCounter != pivot_i){
         equalArr.push(quickSortArr[quickCounter]);
         red_num = leftArr.length + equalArr.length;
     }
 
-    if(quickCounter == quickSortArr.length)
-        canvasArea.stop();
+    if (quickCounter == quickSortArr.length) {
+        //canvasArea.stop();
+        pivot_i = Math.floor(Math.random() * quickSortArr.length);
+        pivot = quickSortArr[pivot_i];
+        quickCounter = 0;
+    }
 
     quickCounter++;
 }
 
+let quickYpositon = 100;
 let quickSortArr = [16, 15, 46, 2, 54, 6, 16, 98, 67, 103];
 let pivot_i = Math.floor(Math.random() * quickSortArr.length);
 let pivot = quickSortArr[pivot_i];
 console.log(pivot);
-
