@@ -11,25 +11,33 @@ function startQuickSort() {
 
     canvasArea.start(updateCanvasQuickSort);
 
-    for (let i = 0; i < quickSortArr.length; i++) {
-        let newObj = new componenttext(quickSortArr[i], 10 * 5 * i, 50);
+    i = Math.floor((canvasArea.canvas.width/50 - quickSortArr.length)/2) ;
+    console.log(i);
+    for (let j = 0; j < quickSortArr.length; j++) {
+        let newObj = new componenttext(quickSortArr[j], 10 * 5 * i, 50);
+        //let newObj = new componenttext(quickSortArr[j], 10 * 5 * j, 50);
         quickArr.push(newObj);
+        console.log(i);
+        i++;
     }
 
-
-    deneme  =  new componenttext(  i , 10 * 5 * i, 150);
+    deneme  =  new componenttext(  i , 10 * 5 * i, 350);
 }
 
 let quickCounter = 0;
 
 let red_num;
 
+let row = 1;
+
 function updateCanvasQuickSort() {
-    let sortedArr = [];
+    quickArr.forEach(element => {
+        element.update("white");
+    });
 
-    canvasArea.clear();
+    //canvasArea.clear();
 
-    //canvasArea.context.clearRect(0, 50, canvasArea.canvas.width, canvasArea.canvas.height)
+    canvasArea.context.clearRect(0, 50, canvasArea.canvas.width, canvasArea.canvas.height)
 
     deneme.text = pivot;
     deneme.x  =  10 * 5 * quickCounter ;
@@ -41,6 +49,12 @@ function updateCanvasQuickSort() {
     });
 
 
+    addRow(row);
+}
+
+function addRow (row) {
+    let sortedArr = [];
+
     newArr=[
         ...leftArr,
         ...[pivot],
@@ -48,9 +62,14 @@ function updateCanvasQuickSort() {
         ...rightArr
       ]
 
-    for (let i = 0; i < newArr.length; i++) {
-        let newObj = new componenttext(newArr[i], 10 * 5 * i, 100);
+    console.log(newArr);
+
+    i = canvasArea.canvas.width/100 - leftArr.length;
+
+    for (let j = 0; j < newArr.length; j++) {
+        let newObj = new componenttext(newArr[j], 10 * 5 * i, (row+1)*50);
         sortedArr.push(newObj);
+        i++;
     }
 
 
@@ -80,12 +99,26 @@ function updateCanvasQuickSort() {
         equalArr.push(quickSortArr[quickCounter]);
         red_num = leftArr.length + equalArr.length;
     }
+    console.log(row);
 
-    if(quickCounter == quickSortArr.length)
-        canvasArea.stop();
-
+    if(quickCounter == quickSortArr.length){
+        if(row==1){
+            quickCounter=0;
+            leftArr = [];
+            rightArr = [];
+            equalArr = [];
+            row++;
+            console.log(row);
+            addRow(row);
+        }
+        else
+            canvasArea.stop();
+    }
     quickCounter++;
+
 }
+
+
 
 let quickSortArr = [16, 15, 46, 2, 54, 6, 16, 98, 67, 103];
 let pivot_i = Math.floor(Math.random() * quickSortArr.length);

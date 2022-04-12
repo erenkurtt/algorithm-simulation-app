@@ -2,7 +2,7 @@
 var canvasArea = {
     canvas: document.createElement("canvas"),
     start: function ( algoFunction ) {
-        this.canvas.width = 700;
+        this.canvas.width = 860;
         this.canvas.height = 400;
         this.canvas.position = "absolute";
         this.context = this.canvas.getContext("2d");
