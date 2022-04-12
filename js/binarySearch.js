@@ -2,18 +2,13 @@ let binary_vals = [];
 let binaryArray = [2, 4, 6, 12, 34, 45, 66, 78, 79];
 
 function startBinarySearch() {
-
     canvasArea.stop();
-
     canvasArea.start(updateCanvasBinarySearch);
-
     for (let i = 0; i < binaryArray.length; i++) {
         let newObj = new componenttext(binaryArray[i], 10 * 5 * i, 50, false);
         binary_vals.push(newObj);
     }
-
     exactValue = new componenttext(1, 600, 50);
-
 }
 
 function componenttextBinary(text, x, y, eliminated) {
@@ -30,7 +25,7 @@ function componenttextBinary(text, x, y, eliminated) {
     }
 }
 
-let bsTimer = 0, searchinglNumb = 4, left = 0, right = binaryArray.length - 1;
+let bsTimer = 0, searchinglNumb = 12, left = 0, right = binaryArray.length - 1;
 
 function updateCanvasBinarySearch() {
     //canvasArea.clear();
@@ -39,26 +34,17 @@ function updateCanvasBinarySearch() {
     });
     let mid = left + Math.floor((right - left) / 2);
     console.log(binaryArray[mid])
-    // binary_vals.forEach(element => {
-    //     if(binaryArray[mid] = searchinglNumb){
-    //         if( binary_vals.indexOf(element) !== mid){
-    //             element.eliminated = true;
-    //         }
-    //     }
-    //     else if(binaryArray[mid] > searchinglNumb){
-    //         if( binary_vals.indexOf(element) > mid){
-    //             element.eliminated = true;
-    //         }
-    //     }
-    //     else if(binaryArray[mid] < searchinglNumb){
-    //         if( binary_vals.indexOf(element) < mid){
-    //             element.eliminated = true;
-    //         }
-    //     }
-    // });
+    binary_vals.forEach(element => {
+        if(searchinglNumb < binaryArray[mid] && binary_vals.indexOf(element) > mid){
+            element.eliminated = true;
+        }
+        else if(searchinglNumb > binaryArray[mid] && binary_vals.indexOf(element) < mid){
+            element.eliminated = true;
+        }
+    });
 
     binary_vals.forEach(element => {
-        if (element.eliminated === true) {
+        if ( element.eliminated ) {
             element.update("red");
         }
         else {
@@ -66,13 +52,17 @@ function updateCanvasBinarySearch() {
         }
     });
     binary_vals[mid].update("blue");
-    //if( bsTimer % 2 === 1){
     if (binaryArray[mid] === searchinglNumb) {
         console.log(searchinglNumb, binaryArray[mid]);
         if (bsTimer % 2 === 1) {
             binary_vals[mid].update("green");
             canvasArea.stop();
         }
+        binary_vals.forEach(element => {
+           if(binary_vals.indexOf(element) !== mid) {
+                element.eliminated = true;
+           }
+        });
         bsTimer++;
     }
     if (binaryArray[mid] > searchinglNumb) {
@@ -81,9 +71,6 @@ function updateCanvasBinarySearch() {
     if (binaryArray[mid] < searchinglNumb) {
         left = mid + 1;
     }
-    //}
-    
-
 }
 
 function binarySearch(arr, l, r, search) {
