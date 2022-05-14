@@ -3,7 +3,7 @@ var canvasArea = {
     canvas: document.createElement("canvas"),
     start: function ( algoFunction ) {
         this.canvas.width = 860;
-        this.canvas.height = 400;
+        this.canvas.height = 500;
         this.canvas.position = "absolute";
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
@@ -48,5 +48,19 @@ function componenttext(text, x, y) {
         ctx.font = "31px Showcard Gothic ";
         ctx.fillStyle = color;
         ctx.fillText(this.text, this.x, this.y);
+    }
+}
+
+function componentLine(moveToX, moveToY, lineToX, lineToY) {
+    this.moveToX = moveToX;
+    this.moveToY = moveToY;
+    this.lineToX = lineToX;
+    this.lineToY = lineToY;
+
+    this.update = function () {
+        ctx = canvasArea.context;
+        ctx.moveTo(this.moveToX, this.moveToY);
+        ctx.lineTo(this.lineToX, this.lineToY);
+        ctx.stroke();
     }
 }
