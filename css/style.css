@@ -2,8 +2,8 @@ canvas {
   margin-top: 0px;
   border: 1px solid black;
   position: absolute;
-  left: 425px;
-  top: 200px;
+  left: 16.6vw;
+  top: 140px;
 }
 
 nav {
@@ -28,4 +28,16 @@ nav {
 
 .list-group{
   background-color: #F0F0F1;
+}
+
+a:link { text-decoration: none; }
+
+a:visited { text-decoration: none; }
+
+a:hover { text-decoration: none; }
+
+a:active { text-decoration: none; }
+
+.clickToStart {
+  margin: 20px;
 }

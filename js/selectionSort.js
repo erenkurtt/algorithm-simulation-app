@@ -7,7 +7,11 @@ function swap(arr,i,j){
 }
 
 function startSelectionSort() {
-
+    selectionArr = [];
+    selectionSortArr = [16, 15, 46, 2, 54, 6, 16, 98, 67, 103];
+    i=0;
+    j=i+1;
+    let min_i=i;
     canvasArea.stop();
 
     canvasArea.start(updateCanvasSelectionSort);

@@ -1,10 +1,19 @@
 let linear_squares = [];
 let linear_vals = [];
 
+let linearArr = [83, 64, 63, 12, 34, 45, 66, 78, 79];
+let searchLinear = 34;
+let linCount = 0;
+linearSearch(linearArr, searchLinear);
 
 function startLinearSearch() {
     canvasArea.stop();
-
+    linear_squares = [];
+    linear_vals = [];
+    linearArr = [83, 64, 63, 12, 34, 45, 66, 78, 79];
+    searchLinear = 34;
+    linCount = 0;
+    linearSearch(linearArr, searchLinear);
     canvasArea.start(updateCanvasLinearSearch);
 
     for (let i = 0; i < linearArr.length; i++) {
@@ -14,22 +23,18 @@ function startLinearSearch() {
         //    linear_squares.push(squares);
     }
 
-    searchKey  =  new componenttext(  searchLinear , 10 * 5 * i + 10 * i, 100);
-
-
+     searchKey  =  new componenttext(  searchLinear , 10 * 5 * i + 10 * i, 100);
 }
 
-let linCount = 0;
+
 
 function updateCanvasLinearSearch() {
 
     canvasArea.clear();
 
-    searchKey.x = 10 * 5 * linCount + 10 * linCount  ; 
+    searchKey.x = 10 * 5 * linCount + 10 * linCount; 
 
     searchKey.update("blue");
-
-
 
     linear_vals.forEach(element => {
 
@@ -44,25 +49,19 @@ function updateCanvasLinearSearch() {
         else{
             element.update("black");
         }
-
-        
         //  linear_squares[linear_vals.indexOf(element)].update(10 * 5 *  linear_vals.indexOf(element) , 10 );
 
     });
     console.log(linear_vals[linCount] )
     if( linear_vals[linCount].text === searchLinear  ){
-       
+
         linear_vals[linCount].update("blue");
         canvasArea.stop()
     }
 
-    
-
     linCount++;
 
 }
-
-
 
 function linearSearch(arr, searchLinear) {
     let n = arr.length;
@@ -75,10 +74,3 @@ function linearSearch(arr, searchLinear) {
     return -1;
 
 }
-
-
-
-
-let linearArr = [83, 64, 63, 12, 34, 45, 66, 78, 79];
-let searchLinear = 34;
-linearSearch(linearArr, searchLinear);
