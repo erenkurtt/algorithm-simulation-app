@@ -76,6 +76,13 @@ function updateCanvasKruskalGraph() {
     if (i < kruskalArray.length) {
         
         if(usedNodes.includes(kruskalArray[i][0]) === false || usedNodes.includes(kruskalArray[i][1]) === false){
+            for(let k=0; k<kruskalArray.length; k++){
+                if(k==i)
+                    nodeLines[k].update("blue");
+                else
+                nodeLines[k].update("black");
+                
+            }
 
             if(usedNodes.includes(kruskalArray[i][0]) === false){
               usedNodes.push(kruskalArray[i][0]);
