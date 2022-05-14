@@ -37,33 +37,71 @@ function startKruskalGraph() {
     canvasArea.start(updateCanvasKruskalGraph);
 
     for (let j = 0; j < nodesCoordinates.length; j++) {
-        let newObj = new componenttext(nodesCoordinates[j][0], nodesCoordinates[j][1], nodesCoordinates[j][2]);
-        nodesObjects.push(newObj);
+        if(nodesCoordinates[j][0] === 'Y' || nodesCoordinates[j][0] === 'X' || nodesCoordinates[j][0] === 'W' || nodesCoordinates[j][0] === 'U'){
+            let newObj = new componenttext(nodesCoordinates[j][0], nodesCoordinates[j][1]-30, nodesCoordinates[j][2]+30);
+            nodesObjects.push(newObj);
+        }
+        else {
+            let newObj = new componenttext(nodesCoordinates[j][0], nodesCoordinates[j][1], nodesCoordinates[j][2]);
+            nodesObjects.push(newObj);
+        }
+
     }
 
     // for (let i = 0; j < kruskalArray.length; i++) {
     //     // let obj = nodesCoordinates.filter(item => item[0])
     // }
-    
+
     let line = [];
 
     kruskalArray.forEach(element => {
         line = nodesCoordinates.filter(e => element[0] === e[0] || element[1] === e[0] )
-        edge = new componentLine( line[0][1], line[0][2], line[1][1], line[1][2] );
+        edge = new componentLine( line[0][1], line[0][2], line[1][1], line[1][2], element[2]);
         nodeLines.push(edge);
-    })
+    });
 
     //deneme  =  new componenttext(  i , 10 * 5 * i, 350);
 }
-
+const usedNodes = [];
+const usedEdges = [];
+let i = 0;
 function updateCanvasKruskalGraph() {
 
     canvasArea.clear();
     nodesObjects.forEach((element) => {
         element.update();
-    })
-    nodeLines.forEach((element) => {
-        element.update();
-    })
+    });
+
+    console.log(nodeLines)
+    if (i < kruskalArray.length) {
+        
+        if(usedNodes.includes(kruskalArray[i][0]) === false || usedNodes.includes(kruskalArray[i][1]) === false){
+
+            if(usedNodes.includes(kruskalArray[i][0]) === false){
+              usedNodes.push(kruskalArray[i][0]);
+              nodeLines[i].color = 'blue';
+              nodeLines[i].update();
+            }
+            if(usedNodes.includes(kruskalArray[i][1]) === false){
+              usedNodes.push(kruskalArray[i][1]);
+              nodeLines[i].update();
+            }
+        }
+        else {
+            nodeLines[i].update();
+        }
+    }
+    // nodeLines.forEach((element) => {
+    //     element.update();
+    // });
+    if( i < kruskalArray.length){
+        i++;
+    }
+    else {
+        canvasArea.stop();
+    }
+
 }
+
+
 
