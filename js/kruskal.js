@@ -45,7 +45,6 @@ function startKruskalGraph() {
             let newObj = new componenttext(nodesCoordinates[j][0], nodesCoordinates[j][1], nodesCoordinates[j][2]);
             nodesObjects.push(newObj);
         }
-
     }
 
     // for (let i = 0; j < kruskalArray.length; i++) {
@@ -56,7 +55,7 @@ function startKruskalGraph() {
 
     kruskalArray.forEach(element => {
         line = nodesCoordinates.filter(e => element[0] === e[0] || element[1] === e[0] )
-        edge = new componentLine( line[0][1], line[0][2], line[1][1], line[1][2], element[2]);
+        edge = new componentLine( line[0][1], line[0][2], line[1][1], line[1][2], element[2], 'black');
         nodeLines.push(edge);
     });
 
@@ -65,6 +64,8 @@ function startKruskalGraph() {
 const usedNodes = [];
 const usedEdges = [];
 let i = 0;
+let colors = Array(kruskalArray.length).fill('black');
+
 function updateCanvasKruskalGraph() {
 
     canvasArea.clear();
@@ -72,32 +73,42 @@ function updateCanvasKruskalGraph() {
         element.update();
     });
 
-    console.log(nodeLines)
     if (i < kruskalArray.length) {
         
         if(usedNodes.includes(kruskalArray[i][0]) === false || usedNodes.includes(kruskalArray[i][1]) === false){
 
             if(usedNodes.includes(kruskalArray[i][0]) === false){
               usedNodes.push(kruskalArray[i][0]);
+              //colors[i] = 'blue';
               nodeLines[i].color = 'blue';
-              nodeLines[i].update();
             }
             if(usedNodes.includes(kruskalArray[i][1]) === false){
               usedNodes.push(kruskalArray[i][1]);
-              nodeLines[i].update();
+              //colors[i] = 'blue';
+              nodeLines[i].color = 'blue';
             }
         }
         else {
-            nodeLines[i].update();
+            //colors[i] = 'red';
+            nodeLines[i].color = 'red';
         }
+
     }
-    // nodeLines.forEach((element) => {
-    //     element.update();
-    // });
+    nodeLines.forEach((element) => {
+        element.update();
+    });
+
     if( i < kruskalArray.length){
         i++;
     }
     else {
+        nodeLines.forEach((element) => {
+            if(element.color === 'red'){
+                element.color = 'white';
+                element.numberColor = 'white';
+            }
+            element.update();
+        });
         canvasArea.stop();
     }
 

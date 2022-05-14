@@ -51,19 +51,21 @@ function componenttext(text, x, y) {
     }
 }
 
-function componentLine(moveToX, moveToY, lineToX, lineToY, weight) {
+function componentLine(moveToX, moveToY, lineToX, lineToY, weight, color) {
     this.moveToX = moveToX;
     this.moveToY = moveToY;
     this.lineToX = lineToX;
     this.lineToY = lineToY;
     this.weight = weight
-    this.color= 'black';
+    this.color = color;
+    this.numberColor = 'black';
 
     this.update = function () {
         ctx = canvasArea.context;
         lineWeight = new componenttext(this.weight, (moveToX + lineToX)/2, (moveToY + lineToY)/2 - 10);
-        lineWeight.update();
+        lineWeight.update(this.numberColor);
         ctx.strokeStyle = this.color;
+        ctx.beginPath();
         ctx.moveTo(this.moveToX, this.moveToY);
         ctx.lineTo(this.lineToX, this.lineToY);
         ctx.stroke();
