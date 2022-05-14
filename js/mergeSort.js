@@ -9,6 +9,16 @@ let squareArrs = [];
 let list_of_square = []; 
 let list_of_seperated = []; 
 
+let inputArr22 = [92, 42, 61, 32, 69, 43, 18, 78 ,34,56,75];
+let inputArr22First = [92, 42, 61, 32, 69, 43, 18, 78 ,34,56,75];
+//let inputArr2 = [ 92, 42, 61, 32, 69, 43, 18, 78,34,56,75,21,43,56];
+
+//console.log(inputArr2);
+
+mergeSort(inputArr22, 0, inputArr22.length - 1);
+
+console.log(sortArr);
+
 function startMergeSort() {
     canvasArea.stop();
 
@@ -170,12 +180,3 @@ function mergeSort(arr, left, right) {
 
 }
 
-let inputArr22 = [92, 42, 61, 32, 69, 43, 18, 78 ,34,56,75];
-let inputArr22First = [92, 42, 61, 32, 69, 43, 18, 78 ,34,56,75];
-//let inputArr2 = [ 92, 42, 61, 32, 69, 43, 18, 78,34,56,75,21,43,56];
-
-//console.log(inputArr2);
-
-mergeSort(inputArr22, 0, inputArr22.length - 1);
-
-console.log(sortArr);

@@ -1,7 +1,14 @@
 let binary_vals = [];
 let binaryArray = [2, 4, 6, 12, 34, 45, 66, 78, 79];
+let bsTimer = 0, searchinglNumb = 12, left = 0, right = binaryArray.length - 1;
 
 function startBinarySearch() {
+    binary_vals = [];
+    binaryArray = [2, 4, 6, 12, 34, 45, 66, 78, 79];
+    bsTimer = 0;
+    searchinglNumb = 12;
+    left = 0;
+    right = binaryArray.length - 1;
     canvasArea.stop();
     canvasArea.start(updateCanvasBinarySearch);
     for (let i = 0; i < binaryArray.length; i++) {
@@ -24,8 +31,6 @@ function componenttextBinary(text, x, y, eliminated) {
         ctx.fillText(this.text, this.x, this.y);
     }
 }
-
-let bsTimer = 0, searchinglNumb = 12, left = 0, right = binaryArray.length - 1;
 
 function updateCanvasBinarySearch() {
     //canvasArea.clear();

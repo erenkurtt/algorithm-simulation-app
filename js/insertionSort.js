@@ -1,9 +1,16 @@
 let valArr = [];
+let inputArr = [92, 42, 61, 32, 69];
+var index = 0, i = 0, j = 0, timer = -1;
 
 function startInsertionSort() {
+    valArr = [];
+    inputArr = [92, 42, 61, 32, 69];
+    index = 0;
+    i = 0;
+    j = 0;
+    timer = -1;
 
     canvasArea.stop();
-
     canvasArea.start(updateCanvasInsertionSort);
 
     for (let i = 0; i < inputArr.length; i++) {
@@ -11,11 +18,9 @@ function startInsertionSort() {
         valArr.push(newObj);
     }
 
-    val1 = new componenttext(1, 600, 50)
-
+    val1 = new componenttext(1, 600, 50);
 }
 
-let inputArr = [92, 42, 61, 32, 69];
 
 // function Picture(width, height, picsrc, x, y) {
 //     this.image = new Image();
@@ -37,10 +42,8 @@ let inputArr = [92, 42, 61, 32, 69];
 //     }
 // }
 
-var index = 0, i = 0, j = 0, timer = -1;
 
 function updateCanvasInsertionSort() {
-
 
     canvasArea.clear();
 
