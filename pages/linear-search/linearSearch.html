@@ -39,24 +39,28 @@
   </nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="sidebar col-2">
+      <div class="sidebar col-2" id="myGroup">
         <h2 class="m-0">
           <button class="sidebar-button btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse1"
             aria-expanded="false">
             Sorting Algorithms
           </button>
         </h2>
-        <div class="collapse p-0 m-0" id="sidebarCollapse1">
+        <div class="collapse p-0 m-0" id="sidebarCollapse1" data-bs-parent="#myGroup">
           <div class="card card-body sidebar-collapse p-0 m-0 border-0">
             <div class="list-group p-0 m-0">
               <button style="background-color: #F0F0F1;" type="button"
-                class="border-0 ps-4 list-group-item list-group-item-action"><a href="../insertion-sort/insertionSort.html">Insertion Sort</a></button>
+                class="border-0 ps-4 list-group-item list-group-item-action"><a
+                  href="../insertion-sort/insertionSort.html">Insertion Sort</a></button>
               <button style="background-color: #F0F0F1;" type="button"
-                class="border-0 ps-4 list-group-item list-group-item-action"><a href="../quick-sort/quickSort.html">Quick Sort</a></button>
+                class="border-0 ps-4 list-group-item list-group-item-action"><a
+                  href="../quick-sort/quickSort.html">Quick Sort</a></button>
               <button style="background-color: #F0F0F1;" type="button"
-                class="border-0 ps-4 list-group-item list-group-item-action"><a href="../selection-sort/selectionSort.html">Selection Sort</a></button>
+                class="border-0 ps-4 list-group-item list-group-item-action"><a
+                  href="../selection-sort/selectionSort.html">Selection Sort</a></button>
               <button style="background-color: #F0F0F1;" type="button"
-                class="border-0 ps-4 list-group-item list-group-item-action"><a href="../merge-sort/mergeSort.html">Merge Sort</a></button>
+                class="border-0 ps-4 list-group-item list-group-item-action"><a
+                  href="../merge-sort/mergeSort.html">Merge Sort</a></button>
               <!-- <button style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Quick Sort</button> -->
             </div>
           </div>
@@ -64,20 +68,22 @@
 
         <h2 class="m-0">
           <button class="sidebar-button btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse2"
-            aria-expanded="false">
+            aria-expanded="false" id="searchingToggler" >
             Searching Algorithms
           </button>
         </h2>
-        <div class="collapse p-0 m-0" id="sidebarCollapse2">
+        <div class="collapse p-0 m-0" id="sidebarCollapse2" data-bs-parent="#myGroup">
           <div class="card card-body sidebar-collapse p-0 m-0 border-0">
             <div class="list-group p-0 m-0">
               <button style="background-color: #F0F0F1;" type="button"
-                class="border-0 ps-4 list-group-item list-group-item-action"><a href="../linear-search/linearSearch.html">Linear Search</a></button>
+                class="border-0 ps-4 list-group-item list-group-item-action"><a
+                  href="../linear-search/linearSearch.html">Linear Search</a></button>
               <!-- <button style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Binary Search</button> -->
             </div>
             <div class="list-group p-0 m-0">
               <button style="background-color: #F0F0F1;" type="button"
-                class="border-0 ps-4 list-group-item list-group-item-action"><a href="../binary-search/binarySearch.html">Binary Search</a></button>
+                class="border-0 ps-4 list-group-item list-group-item-action"><a
+                  href="../binary-search/binarySearch.html">Binary Search</a></button>
               <!-- <button style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Binary Search</button> -->
             </div>
           </div>
@@ -85,20 +91,20 @@
 
         <h2 class="m-0">
           <button class="sidebar-button btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse3"
-            aria-expanded="false">
+            aria-expanded="false" >
             Graph Algorithms
           </button>
         </h2>
-        <div class="collapse p-0 m-0" id="sidebarCollapse3">
+        <div class="collapse p-0 m-0" id="sidebarCollapse3" data-bs-parent="#myGroup">
           <div class="card card-body sidebar-collapse p-0 m-0 border-0">
             <div class="list-group p-0 m-0">
               <button style="background-color: #F0F0F1;" type="button"
-              class="border-0 ps-4 list-group-item list-group-item-action">
-              <a href="../graph-pages/kruskal.html">Kruskal's Algorithm</a>
+                class="border-0 ps-4 list-group-item list-group-item-action">
+                <a href="../graph-pages/kruskal.html">Kruskal's Algorithm</a>
               </button>
               <button style="background-color: #F0F0F1;" type="button"
-              class="border-0 ps-4 list-group-item list-group-item-action">
-              <a href="../graph-pages/dijkstra.html">Dijkstra's Algorithm</a>
+                class="border-0 ps-4 list-group-item list-group-item-action">
+                <a href="../graph-pages/dijkstra.html">Dijkstra's Algorithm</a>
               </button>
               <!-- <button style="background-color: #F0F0F1;" type="button" class="border-0 ps-4 list-group-item list-group-item-action">Binary Search</button> -->
             </div>
@@ -110,9 +116,17 @@
         <!-- <button onclick="startApp()" >INSERTION SORT</button>
             <button onclick="startMerge()" >MERGE SORT</button>
             <button onclick="startLinearSearch()" >LINEAR SEARCH</button> -->
-            <button type="button" class="btn btn-primary clickToStart" onclick="startLinearSearch();">Click to Start</button>
+        <button type="button" class="btn btn-primary clickToStart" onclick="startLinearSearch();">Click to
+          Start</button>
       </div>
       <div class="sidebar col-2"></div>
     </div>
-  </body>
+
+    <script>
+      window.onload = function () {
+        document.getElementById('searchingToggler').click();
+      }
+    </script>
+</body>
+
 </html>
