@@ -4,6 +4,7 @@ let linear_vals = [];
 let linearArr = [83, 64, 63, 12, 34, 45, 66, 78, 79];
 let searchLinear = 34;
 let linCount = 0;
+let searchKey = null;
 linearSearch(linearArr, searchLinear);
 
 function startLinearSearch() {
@@ -13,6 +14,7 @@ function startLinearSearch() {
     linearArr = [83, 64, 63, 12, 34, 45, 66, 78, 79];
     searchLinear = 34;
     linCount = 0;
+    searchKey= null;
     linearSearch(linearArr, searchLinear);
     canvasArea.start(updateCanvasLinearSearch);
 
@@ -22,8 +24,8 @@ function startLinearSearch() {
         linear_vals.push(newObj);
         //    linear_squares.push(squares);
     }
-
-     searchKey  =  new componenttext(  searchLinear , 10 * 5 * i + 10 * i, 100);
+    let i = 1;
+    searchKey  =  new componenttext(  searchLinear , 10 * 5 * i + 10 * i, 100);
 }
 
 

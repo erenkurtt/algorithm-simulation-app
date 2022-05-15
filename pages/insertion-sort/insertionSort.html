@@ -39,14 +39,14 @@
   </nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="sidebar col-2">
+      <div class="sidebar col-2" id="myGroup">
         <h2 class="m-0">
           <button class="sidebar-button btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse1"
-            aria-expanded="false">
+            aria-expanded="false" id="sortingToggler">
             Sorting Algorithms
           </button>
         </h2>
-        <div class="collapse p-0 m-0" id="sidebarCollapse1">
+        <div class="collapse p-0 m-0" id="sidebarCollapse1" data-bs-parent="#myGroup">
           <div class="card card-body sidebar-collapse p-0 m-0 border-0">
             <div class="list-group p-0 m-0">
               <button style="background-color: #F0F0F1;" type="button"
@@ -68,7 +68,7 @@
             Searching Algorithms
           </button>
         </h2>
-        <div class="collapse p-0 m-0" id="sidebarCollapse2">
+        <div class="collapse p-0 m-0" id="sidebarCollapse2" data-bs-parent="#myGroup">
           <div class="card card-body sidebar-collapse p-0 m-0 border-0">
             <div class="list-group p-0 m-0">
               <button style="background-color: #F0F0F1;" type="button"
@@ -89,7 +89,7 @@
             Graph Algorithms
           </button>
         </h2>
-        <div class="collapse p-0 m-0" id="sidebarCollapse3">
+        <div class="collapse p-0 m-0" id="sidebarCollapse3" data-bs-parent="#myGroup">
           <div class="card card-body sidebar-collapse p-0 m-0 border-0">
             <div class="list-group p-0 m-0">
               <button style="background-color: #F0F0F1;" type="button"
@@ -114,5 +114,10 @@
       </div>
       <div class="sidebar col-2"></div>
     </div>
+    <script>
+      window.onload = function () {
+        document.getElementById('sortingToggler').click();
+      }
+    </script>
   </body>
 </html>
