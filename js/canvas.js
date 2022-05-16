@@ -50,7 +50,9 @@ function componenttext(text, x, y) {
     }
 }
 
-function componentLine(moveToX, moveToY, lineToX, lineToY, weight, color) {
+function componentLine(node1, node2, moveToX, moveToY, lineToX, lineToY, weight, color) {
+    this.node1 = node1;
+    this.node2 = node2;
     this.moveToX = moveToX;
     this.moveToY = moveToY;
     this.lineToX = lineToX;

@@ -68,6 +68,8 @@ function startKruskalGraph() {
       (e) => element[0] === e[0] || element[1] === e[0]
     );
     edge = new componentLine(
+      line[0][0],
+      line[1][0],
       line[0][1],
       line[0][2],
       line[1][1],

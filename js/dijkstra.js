@@ -85,6 +85,8 @@ function startDijkstraGraph() {
     Object.keys(dijkstra[element]).forEach((e) => {
       line = nodesCoordinates.filter((x) => x[0] === e || x[0] === element);
       edge = new componentLine(
+        line[0][0],
+        line[1][0],
         line[0][1],
         line[0][2],
         line[1][1],
@@ -113,7 +115,6 @@ function updateCanvasDijkstraGraph() {
 
     valueKeys = Object.keys(dijkstra[keys[keyCounter]]);
 
-    console.log(valueKeys);
     if (valueCounter < valueKeys.length) {
     }
 
@@ -133,6 +134,11 @@ function updateCanvasDijkstraGraph() {
           nodeWeight[currentPointWeight][1] +
           dijkstra[keys[keyCounter]][valueKeys[valueCounter]];
         nodeLines[lineCounter].color = "blue";
+        for(let i=0; i<lineCounter; i++){
+          if(nodeLines[i].node2 == nodeLines[lineCounter].node2)
+            nodeLines[i].color = "red"
+          console.log(nodeLines[i].node2)
+        }
       }
     } else {
       if (nodeWeight[nextPointWeight][1] === -1) {
@@ -232,5 +238,4 @@ function updateCanvasDijkstraGraph() {
       });
     }
   }
-  console.log(keyCounter);
 }
