@@ -12,7 +12,8 @@ let list_of_seperated = [];
 let inputArr22 = [92, 42, 61, 32, 69, 43, 18, 78 ,34,56,75];
 let inputArr22First = [92, 42, 61, 32, 69, 43, 18, 78 ,34,56,75];
 //let inputArr2 = [ 92, 42, 61, 32, 69, 43, 18, 78,34,56,75,21,43,56];
-
+let allVariablesArray = [];
+let allSquaresArray = [];
 //console.log(inputArr2);
 
 mergeSort(inputArr22, 0, inputArr22.length - 1);
@@ -26,27 +27,40 @@ function startMergeSort() {
 
     for (let i = 0; i < inputArr22.length; i++) {
         let squares = new compSquare(10 * 5 * i, 10, 50, 50);
-        let newObj = new componenttext(inputArr22First[i], 10 * 5 * i + 9, 50);
+        let newObj = new componenttext(inputArr22First[i], 10 * 5 * i + 9, 40);
         valMergeArr.push(newObj);
         squareArrs.push(squares);
     }
 
-    sortArr.forEach(element => {
+    for (let i = 0; i < sortArr.length; i++){
+        let tempValArr = [];
+        let tempSquareArr = [];
+        for(let j = 0; j < sortArr[i].length; j++){
+            let squares = new compSquare(50 * j, 10, 50, 50);
+            let newObj = new componenttext(sortArr[i][j], 50 * j + 9, 40);
+            tempValArr.push(newObj);
+            tempSquareArr.push(squares);
+        }
+        allVariablesArray.push(tempValArr);
+        allSquaresArray.push(tempSquareArr);
+    }
 
-        let tempItems = [] ;
-        let tempSquares = [];
-        element.forEach(item => {
+    // sortArr.forEach(element => {
+
+    //     let tempItems = [] ;
+    //     let tempSquares = [];
+    //     element.forEach(item => {
           
-            let squares = new compSquare(10 * 5 * i, 10, 50, 50);
-            let newObj = new componenttext(item, 10 * 5 * i + 9, 50);
-            tempSquares.push(squares);
-            tempItems.push( newObj );
-        });
-        list_of_square.push(tempSquares);
-        list_of_seperated.push(tempItems);
+    //         let squares = new compSquare(10 * 5 * i, 10, 50, 50);
+    //         let newObj = new componenttext(item, 10 * 5 * i + 9, 50);
+    //         tempSquares.push(squares);
+    //         tempItems.push( newObj );
+    //     });
+    //     list_of_square.push(tempSquares);
+    //     list_of_seperated.push(tempItems);
 
         
-    });
+    // });
 
      console.log(list_of_seperated)
 }
@@ -65,52 +79,45 @@ function compSquare(x, y, width, height) {
 }
 
 let mergeTimer = 0 , sortCount = 0;
-
+let countForRight = 0;
+let countForLeft = 0;
 
 function updateCanvasMergeSort() {
 
-    canvasArea.clear();
+    //canvasArea.clear();
+    if(mergeTimer < 1) {
+        valMergeArr.forEach((element, i) => { 
+            element.update("black");
+            squareArrs[i].update(10 * 5 * i, 60 * mergeTimer);
 
-    valMergeArr.forEach(element => {
-
-        element.update("black");
-        squareArrs[valMergeArr.indexOf(element)].update(10 * 5 *  valMergeArr.indexOf(element) , 10 );
-
-    });
-
-    if(mergeTimer < 50 ){
-
-        while(sortCount  <= mergeTimer ){
-            
-            // for (let index = 0; index <= sortCount; index++) {
-
-            //     // list_of_square[index].forEach(element => {
-            //     //     element.update(10 * 5 *  index , 10 *  index  + 20);
-            //     // });
-            //     // list_of_seperated[index].forEach(element => {
-            //     //     element.x = 10 * 5 * i + 9 ; 
-            //     //     element.y  =  50  * index; 
-            //     //     element.update("black");
-            //     // })
-            // }
-            list_of_seperated[0].forEach(element => {
-                element.x = 10 * 5 * list_of_seperated[0].indexOf(element) + 9 ; 
-                element.y  =  100  ; 
-                element.update("black");
-                list_of_square[0][list_of_seperated[0].indexOf(element)].update(10 * 5 *  list_of_seperated[0].indexOf(element) , 60 );
-        
-            });
-
-            sortCount++;
-        }
+        });
     }
 
+    if(mergeTimer < allVariablesArray.length){
+        allVariablesArray[mergeTimer].forEach((element, i) => {
+
+            if(mergeTimer % 2 === 1){
+                element.y += 60 * (countForRight);
+                element.x += 50 * (allVariablesArray[mergeTimer].length+2);
+                allSquaresArray[mergeTimer][i].update(10 * 5 * i + 50 * (allVariablesArray[mergeTimer].length + 2), 60 * (countForRight));
+                
+            }
+            else{
+                element.y += 60*(countForLeft+1);
+                allSquaresArray[mergeTimer][i].update(10 * 5 * i, 60 * (countForLeft+1));
+            }
+            element.update('black');
+
+        })
+
+    }
+    if(mergeTimer % 2 === 1){
+        countForLeft++;
+    } else {
+        countForRight++;
+    }
     mergeTimer++;
-
-
 }
-
-
 
 function merge(arr, left, middle, right) {
     // let newArr = arr.slice(left,right+1);
@@ -177,6 +184,5 @@ function mergeSort(arr, left, right) {
     mergeSort(arr, left, middle);
     mergeSort(arr, middle + 1, right);
     merge(arr, left, middle, right);
-
 }
 

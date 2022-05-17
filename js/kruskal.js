@@ -28,10 +28,20 @@ let nodesCoordinates = [
 ];
 
 let nodeLines = [];
+let usedNodes = [];
+let usedEdges = [];
+let i = 0;
+let line = [];
+let colors = Array(kruskalArray.length).fill("black");
 
 function startKruskalGraph() {
   canvasArea.stop();
-
+  nodeLines = [];
+  line = [];
+  usedNodes = [];
+  usedEdges = [];
+  i = 0;
+  colors = Array(kruskalArray.length).fill("black");
   canvasArea.start(updateCanvasKruskalGraph);
 
   for (let j = 0; j < nodesCoordinates.length; j++) {
@@ -61,8 +71,6 @@ function startKruskalGraph() {
   //     // let obj = nodesCoordinates.filter(item => item[0])
   // }
 
-  let line = [];
-
   kruskalArray.forEach((element) => {
     line = nodesCoordinates.filter(
       (e) => element[0] === e[0] || element[1] === e[0]
@@ -82,10 +90,7 @@ function startKruskalGraph() {
 
   //deneme  =  new componenttext(  i , 10 * 5 * i, 350);
 }
-const usedNodes = [];
-const usedEdges = [];
-let i = 0;
-let colors = Array(kruskalArray.length).fill("black");
+
 
 function updateCanvasKruskalGraph() {
   canvasArea.clear();

@@ -1,6 +1,8 @@
 nodesObjects = [];
 nodesWeight = [];
 
+
+
 let bellmanFord = {
   A: { B: -2, C: 4 },
   B: { C: 3, D: 8 },
@@ -9,6 +11,11 @@ let bellmanFord = {
   E: { F: 1 },
   F: {},
 };
+
+keyCounter = -1;
+valueCounter = 0;
+keys = Object.keys(bellmanFord);
+lineCounter = 0;
 
 nodesCoordinates = [
   ["A", 100, 250],
@@ -32,7 +39,30 @@ nodeLines = [];
 
 function startBellmanFordGraph() {
   canvasArea.stop();
-
+  nodesObjects = [];
+  nodesWeight = [];
+  keyCounter = -1;
+  valueCounter = 0;
+  keys = Object.keys(bellmanFord);
+  lineCounter = 0;
+  nodeLines = [];
+  nodeWeight = [
+    ["A", 0],
+    ["B", -1],
+    ["C", -1],
+    ["D", -1],
+    ["E", -1],
+    ["F", -1],
+  ];
+  nodesCoordinates = [
+    ["A", 100, 250],
+    ["B", 300, 100],
+    ["C", 300, 400],
+    ["D", 500, 100],
+    ["E", 500, 400],
+    ["F", 700, 250],
+  ];
+  
   canvasArea.start(updateCanvasBellmanFordGraph);
 
   for (let j = 0; j < nodesCoordinates.length; j++) {
@@ -79,7 +109,7 @@ function startBellmanFordGraph() {
     }
   }
 
-line = [];
+  line = [];
 
   Object.keys(bellmanFord).forEach((element) => {
     Object.keys(bellmanFord[element]).forEach((e) => {
@@ -101,10 +131,7 @@ line = [];
   //deneme  =  new componenttext(  i , 10 * 5 * i, 350);
 }
 
-keyCounter = -1;
-valueCounter = 0;
-keys = Object.keys(bellmanFord);
-lineCounter = 0;
+
 
 function updateCanvasBellmanFordGraph() {
   if (keyCounter < keys.length - 1 && keyCounter !== -1) {

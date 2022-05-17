@@ -10,6 +10,11 @@ let dijkstra = {
   F: {},
 };
 
+let keyCounter = -1;
+let valueCounter = 0;
+let keys = Object.keys(dijkstra);
+let lineCounter = 0;
+
 nodesCoordinates = [
   ["A", 100, 250],
   ["B", 300, 100],
@@ -32,7 +37,21 @@ nodeLines = [];
 
 function startDijkstraGraph() {
   canvasArea.stop();
-
+  nodesWeight = [];
+  keyCounter = -1;
+  valueCounter = 0;
+  keys = Object.keys(dijkstra);
+  lineCounter = 0;
+  nodeLines = [];
+  nodesObjects = [];
+  nodeWeight = [
+    ["A", 0],
+    ["B", -1],
+    ["C", -1],
+    ["D", -1],
+    ["E", -1],
+    ["F", -1],
+  ];
   canvasArea.start(updateCanvasDijkstraGraph);
 
   for (let j = 0; j < nodesCoordinates.length; j++) {
@@ -101,10 +120,7 @@ function startDijkstraGraph() {
   //deneme  =  new componenttext(  i , 10 * 5 * i, 350);
 }
 
-let keyCounter = -1;
-let valueCounter = 0;
-let keys = Object.keys(dijkstra);
-let lineCounter = 0;
+
 
 function updateCanvasDijkstraGraph() {
   if (keyCounter < keys.length - 1 && keyCounter !== -1) {
