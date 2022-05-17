@@ -2,7 +2,7 @@
 var canvasArea = {
     canvas: document.createElement("canvas"),
     start: function ( algoFunction ) {
-        this.canvas.width = 860;
+        this.canvas.width = 1000;
         this.canvas.height = 500;
         this.canvas.position = "absolute";
         this.context = this.canvas.getContext("2d");
@@ -41,10 +41,10 @@ function componenttext(text, x, y) {
     this.text = text
     this.x = x;
     this.y = y;
-
+    this.fontSize = 28;
     this.update = function (color) {
         ctx = canvasArea.context;
-        ctx.font = "31px Showcard Gothic ";
+        ctx.font = this.fontSize + "px Showcard Gothic ";
         ctx.fillStyle = color;
         ctx.fillText(this.text, this.x, this.y);
     }
@@ -64,6 +64,7 @@ function componentLine(node1, node2, moveToX, moveToY, lineToX, lineToY, weight,
     this.update = function () {
         ctx = canvasArea.context;
         lineWeight = new componenttext(this.weight, (moveToX + lineToX)/2, (moveToY + lineToY)/2 - 10);
+        lineWeight.fontSize = 18
         lineWeight.update(this.numberColor);
         ctx.strokeStyle = this.color;
         ctx.beginPath();
