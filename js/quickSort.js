@@ -1,4 +1,3 @@
-
 let quickArr = [];
 let newArr = [];
 let leftArr = [];
@@ -7,14 +6,12 @@ let rightArr = [];
 let quickCounter = 0;
 let red_num;
 let row = 1;
-let quickSortArr = [16, 15, 46, 2, 54, 6, 16, 98, 67, 103];
+let quickSortArr = [32, 15, 46, 2, 54, 6, 16, 98, 67, 103];
 let pivot_i = Math.floor(Math.random() * quickSortArr.length);
 let pivot = quickSortArr[pivot_i];
-console.log(pivot);
-
 
 function startQuickSort() {
-    
+
     quickArr = [];
     newArr = [];
     leftArr = [];
@@ -61,7 +58,6 @@ function updateCanvasQuickSort() {
     quickArr.forEach(element => {
         element.update("black");
     });
-
 
     addRow(row);
 }
