@@ -26,8 +26,8 @@ function startMergeSort() {
     canvasArea.start(updateCanvasMergeSort);
 
     for (let i = 0; i < inputArr22.length; i++) {
-        let squares = new compSquare(10 * 5 * i, 10, 50, 50);
-        let newObj = new componenttext(inputArr22First[i], 10 * 5 * i + 9, 40);
+        let squares = new compSquare(150 + 10 * 5 * i, 10, 50, 50);
+        let newObj = new componenttext(inputArr22First[i], 150 + 10 * 5 * i + 9, 40);
         valMergeArr.push(newObj);
         squareArrs.push(squares);
     }
@@ -36,8 +36,8 @@ function startMergeSort() {
         let tempValArr = [];
         let tempSquareArr = [];
         for(let j = 0; j < sortArr[i].length; j++){
-            let squares = new compSquare(50 * j, 10, 50, 50);
-            let newObj = new componenttext(sortArr[i][j], 50 * j + 9, 40);
+            let squares = new compSquare(150 + 50 * j, 10, 50, 50);
+            let newObj = new componenttext(sortArr[i][j], 150 + 50 * j + 9, 40);
             tempValArr.push(newObj);
             tempSquareArr.push(squares);
         }
@@ -81,6 +81,9 @@ function compSquare(x, y, width, height) {
 let mergeTimer = 0 , sortCount = 0;
 let countForRight = 0;
 let countForLeft = 0;
+let shiftRight = 0;
+let shiftTop = 0;
+let shiftLeftSingle = 0;
 
 function updateCanvasMergeSort() {
 
@@ -88,7 +91,7 @@ function updateCanvasMergeSort() {
     if(mergeTimer < 1) {
         valMergeArr.forEach((element, i) => { 
             element.update("black");
-            squareArrs[i].update(10 * 5 * i, 60 * mergeTimer);
+            squareArrs[i].update(150 + 10 * 5 * i, 60 * mergeTimer);
 
         });
     }
@@ -97,14 +100,19 @@ function updateCanvasMergeSort() {
         allVariablesArray[mergeTimer].forEach((element, i) => {
 
             if(mergeTimer % 2 === 1){
-                element.y += 60 * (countForRight);
-                element.x += 50 * (allVariablesArray[mergeTimer].length+2);
-                allSquaresArray[mergeTimer][i].update(10 * 5 * i + 50 * (allVariablesArray[mergeTimer].length + 2), 60 * (countForRight));
                 
+                    element.y += 60 * (countForRight) + shiftTop;
+                
+                element.x += 50 * (allVariablesArray[mergeTimer].length+1.5) + shiftRight  + shiftLeftSingle ;
+                allSquaresArray[mergeTimer][i].update(150 + shiftRight  + shiftLeftSingle + 10 * 5 * i + 50 * (allVariablesArray[mergeTimer].length + 1.5), 60 * (countForRight) + shiftTop);
             }
             else{
-                element.y += 60*(countForLeft+1);
-                allSquaresArray[mergeTimer][i].update(10 * 5 * i, 60 * (countForLeft+1));
+                element.y += 60 * (countForRight +1) + shiftTop;
+               
+                if(shiftRight !== 0){
+                    element.x += shiftRight ;
+                }
+                allSquaresArray[mergeTimer][i].update(150 + shiftRight + 10 * 5 * i, 60 * (countForLeft+1) + shiftTop);
             }
             element.update('black');
 
@@ -116,6 +124,22 @@ function updateCanvasMergeSort() {
     } else {
         countForRight++;
     }
+    if(mergeTimer > 1){
+        if(allVariablesArray[mergeTimer].length +1 < allVariablesArray[mergeTimer+1].length ){
+            shiftRight = 400;
+            shiftTop = -300;
+            shiftLeftSingle = 0;
+        }
+        if(allVariablesArray[mergeTimer].length + 1 === allVariablesArray[mergeTimer+1].length ){
+            shiftRight = 200;
+            shiftTop = -120;
+            shiftLeftSingle = 0;
+        }
+        if(allVariablesArray[mergeTimer].length === allVariablesArray[mergeTimer+1].length && allVariablesArray[mergeTimer].length ===1){
+            shiftLeftSingle = -60;
+        }
+    }
+
     mergeTimer++;
 }
 
